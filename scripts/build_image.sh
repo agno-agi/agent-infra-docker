@@ -18,7 +18,7 @@ set -e
 CURR_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 OS_ROOT="$(dirname ${CURR_DIR})"
 DOCKER_FILE="Dockerfile"
-IMAGE_NAME="agent-os"
+IMAGE_NAME="agent-infra-docker"
 IMAGE_TAG="latest"
 
 echo "Running: docker buildx build --platform=linux/amd64,linux/arm64 -t $IMAGE_NAME:$IMAGE_TAG -f $DOCKER_FILE $OS_ROOT --push"

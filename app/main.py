@@ -7,6 +7,13 @@ from agno.os import AgentOS
 
 from agents.agno_assist import get_agno_assist
 from agents.web_agent import get_web_agent
+from teams.multilingual_team import multilingual_team
+from teams.reasoning_finance_team import reasoning_research_team
+from workflows.investment_workflow import investment_workflow
+from workflows.research_workflow import research_workflow
+
+
+
 
 os_config_path = str(Path(__file__).parent.joinpath("config.yaml"))
 
@@ -17,6 +24,8 @@ agno_assist = get_agno_assist(model_id="gpt-5")
 agent_os = AgentOS(
     os_id="agentos-demo",
     agents=[web_agent, agno_assist],
+    teams=[multilingual_team, reasoning_research_team],
+    workflows=[investment_workflow, research_workflow],
     # Configuration for the AgentOS
     config=os_config_path,
 )

@@ -3,6 +3,8 @@ from typing import Generator
 from sqlalchemy.engine import Engine, create_engine
 from sqlalchemy.orm import Session, sessionmaker
 
+from agno.db.postgres import PostgresDb
+
 from db.url import get_db_url
 
 # Create SQLAlchemy Engine using a database URL
@@ -25,3 +27,7 @@ def get_db() -> Generator[Session, None, None]:
         yield db
     finally:
         db.close()
+
+def get_session_db(session_table: str = "agno_sessions", knowledge_table: str = "agno_knowledge") -> PostgresDb:
+    """Create a PostgresDb instance with specific table names for agent isolation."""
+    return PostgresDb(db_url=db_url, id="agent-os", session_table=session_table, knowledge_table=knowledge_table)

@@ -7,7 +7,7 @@ license-files = ["LICENSE"]
 authors = [{ name = "Agno", email = "hello@agno.com" }]
 
 dependencies = [
-  "agno==2.2.5",
+  "agno==2.2.6",
   "agno-infra==1.0.4",
   "beautifulsoup4",
   "ddgs",

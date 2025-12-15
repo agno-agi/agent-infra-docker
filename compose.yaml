@@ -18,10 +18,10 @@ services:
       context: .
       dockerfile: Dockerfile
     image: ${IMAGE_NAME:-agent-os}:${IMAGE_TAG:-latest}
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8080 --reload
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "8080:8080"
     volumes:
       - .:/app
     environment:

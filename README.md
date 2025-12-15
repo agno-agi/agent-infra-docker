@@ -1,4 +1,4 @@
-# Agent OS Docker
+# Agent OS Docker Template
 
 Welcome to Agent OS Docker: a robust, production-ready application for serving Agentic Applications as an API. It includes:
 
@@ -58,6 +58,14 @@ Once started, you can:
 - Open the [Agno AgentOS UI](https://os.agno.com).
 - Connect your OS with `http://localhost:8000` as the endpoint. You can name it `AgentOS` (or any name you prefer).
 - Explore all the features of AgentOS or go straight to the Chat page to interact with your Agents.
+
+### How to load the knowledge base locally
+
+To load the knowledge base, you can use the following command:
+
+```sh
+docker exec -it agent-infra-docker-agentos python -m agents.agno_assist
+```
 
 ### Stop the application
 

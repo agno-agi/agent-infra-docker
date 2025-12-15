@@ -1,31 +1,26 @@
 from textwrap import dedent
 
 from agno.agent import Agent
-from agno.db.postgres import PostgresDb
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
 
-from db.session import db_url
+from app.models import OPENAI_MODEL_ID
+from db.session import get_postgres_db
 
-
-def get_web_agent(
-    model_id: str = "gpt-5",
-    debug_mode: bool = False,
-) -> Agent:
-    return Agent(
-        id="web-search-agent",
-        name="Web Search Agent",
-        model=OpenAIChat(id=model_id),
-        # Tools available to the agent
-        tools=[DuckDuckGoTools()],
-        # Description of the agent
-        description=dedent("""\
+web_agent = Agent(
+    id="web-search-agent",
+    name="Web Search Agent",
+    model=OpenAIChat(id=OPENAI_MODEL_ID),
+    # Tools available to the agent
+    tools=[DuckDuckGoTools()],
+    # Description of the agent
+    description=dedent("""\
             You are WebX, an advanced Web Search Agent designed to deliver accurate, context-rich information from the web.
 
             Your responses should be clear, concise, and supported by citations from the web.
         """),
-        # Instructions for the agent
-        instructions=dedent("""\
+    # Instructions for the agent
+    instructions=dedent("""\
             As WebX, your goal is to provide users with accurate, context-rich information from the web. Follow these steps meticulously:
 
             1. Understand and Search:
@@ -64,21 +59,19 @@ def get_web_agent(
             - You are interacting with the user_id: {current_user_id}
             - The user's name might be different from the user_id, you may ask for it if needed and add it to your memory if they share it with you.\
         """),
-        # -*- Storage -*-
-        # Storage chat history and session state in a Postgres table
-        db=PostgresDb(id="agno-storage", db_url=db_url),
-        # -*- History -*-
-        # Send the last 3 messages from the chat history
-        add_history_to_context=True,
-        num_history_runs=3,
-        # -*- Memory -*-
-        # Enable agentic memory where the Agent can personalize responses to the user
-        enable_agentic_memory=True,
-        # -*- Other settings -*-
-        # Format responses using markdown
-        markdown=True,
-        # Add the current date and time to the instructions
-        add_datetime_to_context=True,
-        # Show debug logs
-        debug_mode=debug_mode,
-    )
+    # -*- Storage -*-
+    # Storage chat history and session state in a Postgres table
+    db=get_postgres_db(),
+    # -*- History -*-
+    # Send the last 3 messages from the chat history
+    add_history_to_context=True,
+    num_history_runs=3,
+    # -*- Memory -*-
+    # Enable agentic memory where the Agent can personalize responses to the user
+    enable_agentic_memory=True,
+    # -*- Other settings -*-
+    # Format responses using markdown
+    markdown=True,
+    # Add the current date and time to the instructions
+    add_datetime_to_context=True,
+)

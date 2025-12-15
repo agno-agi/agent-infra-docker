@@ -4,7 +4,7 @@ Welcome to Agent OS Docker: a robust, production-ready application for serving A
 
 - An **AgentOS instance**: An API-based interface for production-ready Agentic Applications.
 - A **PostgreSQL database** for storing Agent sessions, knowledge, and memories.
-- A set of **pre-built Agents** to use as a starting point.
+- A set of **pre-built Agents, Teams and Workflows** to use as a starting point.
 
 For more information, checkout [Agno](https://agno.link/gh) and give it a ⭐️
 

@@ -24,7 +24,7 @@ cd agent-infra-docker
 
 ### Configure API keys
 
-We use GPT 5 as the default model, please export the `OPENAI_API_KEY` environment variable to get started.
+We use GPT 5 Mini as the default model, please export the `OPENAI_API_KEY` environment variable to get started.
 
 ```sh
 export OPENAI_API_KEY="YOUR_API_KEY_HERE"
@@ -81,13 +81,22 @@ Or:
 docker compose down
 ```
 
-## Prebuilt Agents
+## Prebuilt Agents, Teams, and Workflows
 
-The `/agents` folder contains pre-built agents that you can use as a starting point.
+The `/agents` folder contains pre-built agents, teams, and workflows that you can use as a starting point.
 
-- Web Search Agent: A simple agent that can search the web.
-- Agno Assist: An Agent that can help answer questions about Agno.
-- Finance Agent: An agent that uses the Financial Datasets API to get stock prices and financial data.
+- Agno Assist: An Agent that can help answer questions about Agno and provide support for developers working with Agno.
+- Web Search Agent: A Agent that can search the web based on the user's query.
+
+The `/teams` folder contains pre-built teams that you can use as a starting point.
+
+- Multilingual Team: A team consisting of member agents that specialize in different languages and can translate and provide cultural insights.
+- Reasoning Research Team: A team consisting of member agents that can research and provide insights.
+
+The `/workflows` folder contains pre-built workflows that you can use as a starting point.
+
+- Investment Workflow: A workflow that creates a comprehensive investment strategy report based on the user's request.
+- Research Workflow: A workflow that creates a comprehensive research report based on the user's request and provides a summary of the research findings.
 
 ## Development Setup
 
